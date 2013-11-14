@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<style>
+		body{
+			background: #322E2F;
+		}
+		#container {
+			/*height: 500px;*/
+			position: relative;
+		}
+		
+		.column {
+			position: relative;
+			float: left;			
+			margin: 10px;
+			width: 10px;
+			/*background: #c3c3c3;*/
+			height: 200px;
+			cursor: pointer;
+		}
+		
+		.column .chart {						
+			position: absolute;	
+			bottom: 0px;
+			width: 10px;
+			/*background: rgb(200,0,134);*/
+		}
+		
+		.column .name {
+			position: absolute;	
+			width: 30px;
+			bottom: 0;
+			left: -3px;
+			color: #604350;
+			font-family: "Segoe UI";
+			font-size: 9px;
+		}
+		
+		.chart.magenta{
+			background: rgb(200,0,134);
+		}
+		.chart.blue{
+			background: #55A5EF;
+		}
+		.chart.green{
+			background: #4CEE5F;
+		}
+		.chart.red{
+			background: #E90643;
+		}
+		
+		.chart.purple{
+			background: #6453D0;
+		}
+		
+		label {
+			display: inline-block;
+			width: 5em;
+		}
+		
+		.clear {
+			clear: both;
+		}
+		
+		.box {
+			position: relative;
+			float: left;			
+			width: 300px auto;
+			height: 300px;
+			padding: 10px;
+			margin: 10px;
+			border: dashed 1px rgb(200,0,134);
+			background: #E8EAEC;
+		}
+		
+		#drawChart {
+			position: absolute;
+			top: 0;
+			left: 120px;
+		}
+	</style>
+	<!-- <script src="js/jquery_v_1.4.js"></script> -->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>	
+	<script src="js/jquery.aLzChart.js"></script>
+	<script>
+		$( document ).tooltip({ position: { my: "left-70 top", at: "right top" } });
+		
+		var chartData = [{
+			name: "#Ali",
+			chart: "120",
+			id: "Ali_100"			
+		}, 
+		{
+			name: "#Sandhi",
+			chart: "130",
+			id: "Sandhi_30"
+		},
+		{
+			name: "#Fakhri",
+			chart: "158",
+			id: "Fakhri_58"
+		},
+		{
+			name: "#Juan",
+			chart: "140",
+			id: "Juan_40"
+		}];
+		
+		var chartData2 = [{
+			name: "#DelPiero",
+			chart: "100000",
+			id: "DelPiero_100"			
+		}, 
+		{
+			name: "#Ambrossini",
+			chart: "122130",
+			id: "Ambrossini_30"
+		},
+		{
+			name: "#Maldini",
+			chart: "300000",
+			id: "Maldini_58"
+		},
+		{
+			name: "#RobertoBaggio",
+			chart: "111140",
+			id: "RobertoBaggio_40"
+		}];
+		
+		var chartData3 = [
+		{
+			name: "#Ali",
+			chart: "122138",
+			id: "Ali_100"			
+		}, 
+		{
+			name: "#Sandhi",
+			chart: "139390",
+			id: "Sandhi_30",
+			color: "blue"
+		},
+		{
+			name: "#Fakhri",
+			chart: "122130",
+			id: "Fakhri_58",
+			color: "green"
+		},
+		{
+			name: "#Juan",
+			chart: "140000",
+			id: "Juan_40",
+			color: "red"
+		},
+		{
+			name: "#DelPiero",
+			chart: "100000",
+			id: "DelPiero_100"			
+		}, 
+		{
+			name: "#Ambrossini",
+			chart: "122130",
+			id: "Ambrossini_30",
+			color: "green"
+		},
+		{
+			name: "#Maldini",
+			chart: "150000",
+			id: "Maldini_58",
+			color: "purple"
+		},
+		{
+			name: "#RobertoBaggio",
+			chart: "111140",
+			id: "RobertoBaggio_40",
+			color: "blue"
+		}];
+		
+		$(document).ready(function(){			
+			$("#container").chart({
+				identifierProperty: 'id',            
+				name: function(item) {
+					return item.name;
+				},            
+				actionMenu: {
+					Delete: {
+						showCondition: function(item) {
+							return true;
+						},
+						command: function(item) {
+							return "";
+						}
+					}
+				},
+				chart: function (item){
+					return item.chart;
+				},
+				upperBound: 100
+			}, chartData);
+			
+			$("#drawChart").click(function(){
+				$("#container2").chart({
+					identifierProperty: 'id',            
+					name: function(item) {
+						return item.name;
+					}, 
+					chart: function (item){
+						return item.chart;
+					}
+				}, chartData2);
+			});
+			
+			setInterval(function(){
+				$("#container3").chart({
+					identifierProperty: 'id',            
+					name: function(item) {
+						return item.name;
+					}, 
+					chart: function (item){
+						return item.chart;
+					},
+					color: function (item){
+						return item.color;
+					}
+				}, chartData3);
+			}, 10000);
+		});
+	</script>
+</head>
+<body>
+	<div class="box">
+		<h4>Auto refresh after 10 seconds</h4>
+		<div id="container3"></div>	
+		<div class="clear"></div>		
+	</div>
+	<div class="box">
+		<h4>Generate Chart at first load</h4>
+		<div id="container">
+			<div class="column"><span class="name">#Tag1</span><span class="chart" style="height:20px"></span></div>
+			<div class="column"><span class="name">#Tag2</span><span class="chart" style="height:40px"></span></div>
+			<div class="column"><span class="name">#Tag3</span><span class="chart" style="height:10px"></span></div>
+			<div class="column"><span class="name">#Tag4</span><span class="chart" style="height:30px"></span></div>
+		</div>
+		<div class="clear"></div>		
+	</div>
+	
+	<div class="box">
+		<h4>Fire button to Generate Chart</h4>	
+		<input type="button" id="drawChart" value="Display Chart" />
+		<div id="container2"></div>
+		<div class="clear"></div>		
+	</div>
+</body>
+</html>
