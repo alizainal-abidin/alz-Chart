@@ -32,7 +32,8 @@ Usage:
   }];
   
 3. Generate bar-chart by simple script below:  
-  $("#chart-container").chart({
+  
+$("#chart-container").chart({
       identifierProperty: 'id',
       
       name: function(item) {
@@ -45,3 +46,4 @@ Usage:
       
       upperBound: 100
   }, chartJSONData); 
+
