@@ -10,6 +10,7 @@ Usage:
 1. Provide container to display chart. e.g: <div id="chart-container"></div>
 
 2. Initialize JSON data as sample below:
+
   var chartJSONData = [{
 			name: "#Ali",
 			chart: "120",
