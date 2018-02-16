@@ -1,50 +1,51 @@
-alz-Chart
-=========
-created by : Ali Zainal Abidin
-email : alizainal.abidin@live.com
-created on : 09/12/2013 
-
+# alz-chart
 A simple jQuery plugin to generate bar-chart.
+========================================================================
+- author 	: alizainal.abidin@live.com
+- created on : 09/12/2013 
+========================================================================
 
-Usage:
-1. Provide container to display chart. e.g: <div id="chart-container"></div>
+## Usage:
+1. Provide container to display chart. e.g: 
+```sh
+	<div id="chart-container"></div>
+```
 
-2. Initialize JSON data as sample below:
+2. Initialize JSON data as below:
+```sh
+var chartJSONData = [{
+	name: "#Ali",
+	chart: "120",
+	id: "1"			
+}, 
+{
+	name: "#Sandhi",
+	chart: "130",
+	id: "2"
+},
+{
+	name: "#Pablo",
+	chart: "158",
+	id: "3"
+},
+{
+	name: "#John",
+	chart: "140",
+	id: "4"
+}];	
+```
 
-  var chartJSONData = [{
-			name: "#Ali",
-			chart: "120",
-			id: "Ali_100"			
-		}, 
-		{
-			name: "#Sandhi",
-			chart: "130",
-			id: "Sandhi_30"
-		},
-		{
-			name: "#Fakhri",
-			chart: "158",
-			id: "Fakhri_58"
-		},
-		{
-			name: "#Juan",
-			chart: "140",
-			id: "Juan_40"
-  }];
-  
-3. Generate bar-chart by simple script below:  
-  
+3. Activate the `chart` by added the following lines:  
+```sh
 $("#chart-container").chart({
-      identifierProperty: 'id',
-      
-      name: function(item) {
-        return item.name;
-      },
-      
-      chart: function (item){
-        return item.chart;
-      },
-      
-      upperBound: 100
-  }, chartJSONData); 
+	identifierProperty: 'id',
+	name: function(item) {
+		return item.name;
+	},      
+	chart: function (item){
+		return item.chart;
+	},      
+	upperBound: 100
+}, chartJSONData); 
 
+```
